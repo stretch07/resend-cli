@@ -5,7 +5,7 @@ import apikeys from "./sections/apikeys.js";
 import audiences from "./sections/audiences.js";
 import contacts from "./sections/contacts.js";
 
-export default async ({resend, apiKey}) => {
+export default async ({resend, apiKey, config}) => {
     const prompt = new enquirer.Select({
         message: "Choose a section",
         choices: [
@@ -19,19 +19,19 @@ export default async ({resend, apiKey}) => {
     const answer = await prompt.run()
     switch (answer) {
         case "email":
-            await email({resend, apiKey})
+            await email({resend, apiKey, config})
             break
         case "domain":
-            await domain({resend, apiKey})
+            await domain({resend, apiKey, config})
             break
         case "apiKeys":
-            await apikeys({resend, apiKey})
+            await apikeys({resend, apiKey, config})
             break
         case "audiences":
-            await audiences({resend, apiKey})
+            await audiences({resend, apiKey, config})
             break
         case "contacts":
-            await contacts({resend, apiKey})
+            await contacts({resend, apiKey, config})
             break
     }
 }

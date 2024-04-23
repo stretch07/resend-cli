@@ -1,7 +1,7 @@
 import ora from "ora"
 import enquirer from "enquirer";
 
-export default async function domain({resend, apiKey}) {
+export default async function({resend, apiKey}) {
     const prompt = new enquirer.Select({
         message: "Choose an action",
         choices: [
@@ -28,8 +28,8 @@ export default async function domain({resend, apiKey}) {
             const apiKey = await resend.apiKeys.create({name, permission})
             spinner.stop()
             console.log("IMPORTANT! Save this API key in a safe place. It will not be shown again.")
-            console.log("ID: " + apiKey.id)
-            console.log("API Key: " + apiKey.token)
+            console.log("ID: " + apiKey.data.id)
+            console.log("API Key: " + apiKey.data.token)
             break;
         case "list":
             const spinner2 = ora({text: "Fetching API Keys...", spinner: "toggle9"}).start()
