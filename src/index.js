@@ -7,6 +7,7 @@ const fig = promisify(figlet)
 import ora from "ora"
 import { Resend } from "resend"
 import routes from "./routes.js"
+import readline from "readline"
 
 const text = await fig("resend-cli")
 console.log(text)
@@ -25,7 +26,10 @@ if (fileExists) {
         console.error(e)
         process.exit(1)
     }
-    await routes({resend: instance, apiKey: config.apiKey, config})
+
+    try {
+        await routes({resend: instance, apiKey: config.apiKey, config})
+    } catch {} // this is needed so that Ctrl+C doesn't throw an exception
 } else {
     const apiKeyResponse = await enquirer.password({
         message: "Enter an API key with full access: "
