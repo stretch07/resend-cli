@@ -14,6 +14,6 @@ After this, the API key will be saved in plain text (!) at ~/.resend_config.json
 To exit resend-cli, use the Ctrl+C keyboard shortcut.
 
 ## misc
-visit the [project page](https://stretch.wtf/projects/resend-cli) to learn more about this project.  
+visit the [project page](https://pablogracia.net/projects/resend-cli) to learn more about this project.  
 
 Contributions welcome. Stars encouraged.

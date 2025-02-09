@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import enquirer from "enquirer"
 import * as fs from "fs/promises"
 import {homedir} from "os"
@@ -8,6 +10,23 @@ import ora from "ora"
 import { Resend } from "resend"
 import routes from "./routes.js"
 import readline from "readline"
+
+if (process.platform === "win32") {
+    var rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout
+    });
+  
+    rl.on("SIGINT", function () {
+      process.emit("SIGINT");
+    });
+  }
+  
+  process.on("SIGINT", function () {
+    //graceful shutdown
+    console.log("\nExiting...");
+    process.exit();
+  });
 
 const text = await fig("resend-cli")
 console.log(text)
